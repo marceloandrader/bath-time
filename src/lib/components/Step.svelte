@@ -64,7 +64,7 @@
 
   .card.active {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: scale(1.1); /* Make it bigger */
+    
     opacity: 1; /* Full opacity for active */
   }
 

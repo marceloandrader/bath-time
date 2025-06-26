@@ -21,33 +21,65 @@
 	<meta name="description" content="A step-by-step timer for bath time" />
 </svelte:head>
 
-<section>
-  {#each data.steps as step, i}
-    <Step
-      {step}
-      isActive={$currentStepIndex === i}
-      isDone={$currentStepIndex > i}
-      on:stepComplete={nextStep}
-    />
-  {/each}
+<div class="page-container">
+  <div class="main-step-container">
+    {#if data.steps[$currentStepIndex]}
+      <Step
+        step={data.steps[$currentStepIndex]}
+        isActive={true}
+        isDone={false}
+        on:stepComplete={nextStep}
+      />
+    {/if}
+  </div>
 
   <div class="navigation-buttons">
     <button on:click={prevStep} disabled={$currentStepIndex === 0}>Previous</button>
     <button on:click={nextStep} disabled={$currentStepIndex === data.steps.length - 1}>Next</button>
   </div>
-</section>
+
+  <div class="steps-carousel">
+    {#each data.steps as step, i}
+      <div class="carousel-item" class:active={$currentStepIndex === i} class:done={$currentStepIndex > i}>
+        <Step
+          {step}
+          isActive={$currentStepIndex === i}
+          isDone={$currentStepIndex > i}
+          on:stepComplete={nextStep}
+        />
+      </div>
+    {/each}
+  </div>
+</div>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh; /* Full viewport height */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .main-step-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+  }
+
+  .main-step-container .card {
+    width: 100%;
+    height: auto;
+    transform: scale(1.5); /* Make the active card much bigger */
+  }
 
   .navigation-buttons {
-    margin-top: 20px;
+    margin: 20px 0;
     display: flex;
     gap: 10px;
   }
@@ -56,5 +88,35 @@
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+  }
+
+  .steps-carousel {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 10px;
+    padding-bottom: 10px; /* Space for scrollbar */
+    width: 100%;
+    justify-content: center; /* Center items if they don't fill the width */
+  }
+
+  .carousel-item {
+    flex-shrink: 0; /* Prevent items from shrinking */
+    width: 150px; /* Fixed width for carousel items */
+    height: auto;
+    opacity: 0.5; /* Default opacity for future steps */
+    transition: opacity 0.3s ease;
+  }
+
+  .carousel-item.active {
+    opacity: 1; /* Full opacity for active item in carousel */
+  }
+
+  .carousel-item.done {
+    opacity: 0.1; /* 10% opacity for done items in carousel */
+  }
+
+  .carousel-item .card {
+    width: 100%;
+    height: 100%;
   }
 </style>
