@@ -1,17 +1,18 @@
 
 <script lang="ts">
+  import { onDestroy } from 'svelte';
+
   export let step: { title: string; duration: number; image: string };
-  export let active = false;
+  export let isActive = false;
+  export let isDone = false;
 
   let remaining = step.duration;
   let interval: NodeJS.Timeout;
 
-  import { onDestroy } from 'svelte';
-
   $: remaining = step.duration;
 
   $: {
-    if (active) {
+    if (isActive) {
       if (interval) {
         clearInterval(interval);
       }
@@ -36,11 +37,11 @@
   });
 </script>
 
-<div class="card {active ? 'active' : ''}">
+<div class="card" class:active={isActive} class:done={isDone}>
   <img src={step.image} alt={step.title} />
   <div class="card-content">
     <h2>{step.title}</h2>
-    {#if active}
+    {#if isActive}
       <p class="timer">{remaining}s</p>
     {/if}
   </div>
@@ -55,11 +56,17 @@
     flex-direction: column;
     overflow: hidden;
     transition: all 0.3s ease;
+    opacity: 0.5; /* Default for future steps */
   }
 
   .card.active {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
+    transform: scale(1.1); /* Make it bigger */
+    opacity: 1; /* Full opacity for active */
+  }
+
+  .card.done {
+    opacity: 0.1; /* 10% opacity for done steps */
   }
 
   img {
@@ -74,10 +81,6 @@
 
   h2 {
     margin: 0 0 8px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-    color: #333;
   }
 
   .timer {
@@ -86,3 +89,4 @@
     text-align: center;
   }
 </style>
+
