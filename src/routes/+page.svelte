@@ -27,6 +27,7 @@
       {step}
       isActive={$currentStepIndex === i}
       isDone={$currentStepIndex > i}
+      on:stepComplete={nextStep}
     />
   {/each}
 

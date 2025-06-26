@@ -1,6 +1,8 @@
 
 <script lang="ts">
-  import { onDestroy } from 'svelte';
+  import { onDestroy, createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
 
   export let step: { title: string; duration: number; image: string };
   export let isActive = false;
@@ -21,6 +23,7 @@
         if (remaining <= 0) {
           clearInterval(interval);
           remaining = 0;
+          dispatch('stepComplete');
         }
       }, 1000);
     } else {
