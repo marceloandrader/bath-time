@@ -11,59 +11,59 @@ export interface Step {
 export const load: PageLoad = async () => {
   const steps: Step[] = [
     {
-      title: 'Gather Supplies',
+      title: 'Prepararse para ducharse',
       duration: 3,
-      image: '/pictograms/gather-supplies.png'
+      image: '/pictogramas/ducha.png'
     },
     {
-      title: 'Wet Body and Hair',
-      duration: 6,
-      image: '/pictograms/wet-body-hair.png'
-    },
-    {
-      title: 'Shampoo Hair',
-      duration: 9,
-      image: '/pictograms/shampoo-hair.png'
-    },
-    {
-      title: 'Rinse Hair',
-      duration: 6,
-      image: '/pictograms/rinse-hair.png'
-    },
-    {
-      title: 'Apply Conditioner',
+      title: 'Mojarse cabello y cuerpo',
       duration: 3,
-      image: '/pictograms/apply-conditioner.png'
+      image: '/pictogramas/mojar.png'
     },
     {
-      title: 'Rinse Conditioner',
-      duration: 6,
-      image: '/pictograms/rinse-conditioner.png'
-    },
-    {
-      title: 'Wash Body',
-      duration: 12,
-      image: '/pictograms/wash-body.png'
-    },
-    {
-      title: 'Rinse Body',
-      duration: 6,
-      image: '/pictograms/rinse-body.png'
-    },
-    {
-      title: 'Wash Face (Optional)',
-      duration: 6,
-      image: '/pictograms/wash-face.png'
-    },
-    {
-      title: 'Final Rinse',
+      title: 'Poner Shampoo',
       duration: 3,
-      image: '/pictograms/final-rinse.png'
+      image: '/pictogramas/shampoo.png'
     },
     {
-      title: 'Exit Shower & Dry',
-      duration: 6,
-      image: '/pictograms/exit-dry.png'
+      title: 'Lavar Pelo',
+      duration: 3,
+      image: '/pictogramas/lavar.png'
+    },
+    {
+      title: 'Poner Rinse',
+      duration: 3,
+      image: '/pictogramas/acondicionador.png'
+    },
+    {
+      title: 'Enjuagar Rinse',
+      duration: 3,
+      image: '/pictogramas/lavar.png'
+    },
+    {
+      title: 'Enjabonar Cuerpo',
+      duration: 3,
+      image: '/pictogramas/enjabonar-cuerpo.png'
+    },
+    {
+      title: 'Lavar Cuerpo',
+      duration: 3,
+      image: '/pictogramas/lavar.png'
+    },
+    {
+      title: 'Lavar Cara',
+      duration: 3,
+      image: '/pictogramas/cara.png'
+    },
+    {
+      title: 'Enjuague Final',
+      duration: 3,
+      image: '/pictogramas/final.png'
+    },
+    {
+      title: 'Salir y Secar',
+      duration: 3,
+      image: '/pictogramas/secarse.png'
     }
   ];
 

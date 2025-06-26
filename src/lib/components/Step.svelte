@@ -43,7 +43,7 @@
 <div class="card" class:active={isActive} class:done={isDone}>
   <img src={step.image} alt={step.title} />
   <div class="card-content">
-    <h2>{step.title}</h2>
+    <h2 class:active={isActive}>{step.title}</h2>
     {#if isActive}
       <p class="timer">{remaining}s</p>
     {/if}
@@ -74,16 +74,24 @@
 
   img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: auto; /* Allow image to take available space */
+    object-fit: contain; /* Ensure image fits within bounds */
+    flex-grow: 1; /* Allow image to grow */
   }
 
   .card-content {
     padding: 16px;
   }
 
-  h2 {
+  h2.active {
     margin: 0 0 8px;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  h2:not(.active) {
+    font-size: 10px;
   }
 
   .timer {

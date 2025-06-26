@@ -74,8 +74,16 @@
 
   .main-step-container .card {
     width: 100%;
-    height: auto;
-    transform: scale(1.5); /* Make the active card much bigger */
+    height: 100%; /* Make the card fill the height of its container */
+  }
+
+  .main-step-container .card img {
+    flex-grow: 1; /* Allow image to take available space */
+    height: auto; /* Override fixed height */
+  }
+
+  .main-step-container .card .card-content {
+    flex-shrink: 0; /* Prevent content from shrinking */
   }
 
   .navigation-buttons {
@@ -103,7 +111,7 @@
     flex-shrink: 0; /* Prevent items from shrinking */
     width: 150px; /* Fixed width for carousel items */
     height: auto;
-    opacity: 0.5; /* Default opacity for future steps */
+    opacity: 0.7; /* Default opacity for future steps */
     transition: opacity 0.3s ease;
   }
 
@@ -112,7 +120,7 @@
   }
 
   .carousel-item.done {
-    opacity: 0.1; /* 10% opacity for done items in carousel */
+    opacity: 0.3; /* 30% opacity for done items in carousel */
   }
 
   .carousel-item .card {
