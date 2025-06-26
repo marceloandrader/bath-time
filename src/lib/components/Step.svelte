@@ -6,13 +6,20 @@
   let remaining = step.duration;
   let interval: NodeJS.Timeout;
 
+  import { onDestroy } from 'svelte';
+
+  $: remaining = step.duration;
+
   $: {
     if (active) {
-      remaining = step.duration;
+      if (interval) {
+        clearInterval(interval);
+      }
       interval = setInterval(() => {
-        remaining -= 1;
-        if (remaining === 0) {
+        remaining = remaining - 1;
+        if (remaining <= 0) {
           clearInterval(interval);
+          remaining = 0;
         }
       }, 1000);
     } else {
@@ -21,6 +28,12 @@
       }
     }
   }
+
+  onDestroy(() => {
+    if (interval) {
+      clearInterval(interval);
+    }
+  });
 </script>
 
 <div class="card {active ? 'active' : ''}">
@@ -61,6 +74,10 @@
 
   h2 {
     margin: 0 0 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: #333;
   }
 
   .timer {

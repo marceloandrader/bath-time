@@ -2,7 +2,7 @@
   import Step from '$lib/components/Step.svelte';
 
   const step = {
-    title: 'Wash your hair',
+    title: 'Lavar cabello',
     duration: 30,
     image: '/wash-hair.png'
   };
