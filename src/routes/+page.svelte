@@ -1,32 +1,19 @@
 <script lang="ts">
   import Step from '$lib/components/Step.svelte';
+  import type { PageData } from './$types';
 
-  const step = {
-    title: 'Lavar cabello',
-    duration: 30,
-    image: '/wash-hair.png'
-  };
-  const step2 = {
-    title: 'Wash Neck',
-    duration: 30,
-    image: '/wash-neck.png'
-  };
-  const step3 = {
-    title: 'Wash face',
-    duration: 30,
-    image: '/wash-face.png'
-  };
+  export let data: PageData;
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Bath Time Helper</title>
+	<meta name="description" content="A step-by-step timer for bath time" />
 </svelte:head>
 
 <section>
-  <Step {step} active={true} />
-  <Step step={step2} active={false} />
-  <Step step={step3} active={false} />
+  {#each data.steps as step}
+    <Step {step} active={false} />
+  {/each}
 </section>
 
 <style>
