@@ -1,6 +1,16 @@
 
 <script lang="ts">
-  import { onDestroy, createEventDispatcher } from 'svelte';
+  import { onDestroy, createEventDispatcher, onMount } from 'svelte';
+
+  let utterance: SpeechSynthesisUtterance;
+
+  onMount(() => {
+    utterance = new SpeechSynthesisUtterance();
+    utterance.voice = window.speechSynthesis.getVoices().filter((v) => v.lang === "es").find((v) => v.name === "Spanish (Spain)+Andrea")
+    utterance.pitch = 0;
+    utterance.rate = 0.5;
+    utterance.lang = 'es-EC'; // Set default language
+  });
 
   const dispatch = createEventDispatcher();
 
@@ -17,6 +27,11 @@
     if (isActive) {
       if (interval) {
         clearInterval(interval);
+      }
+      // Speak the step title
+      if (utterance) {
+        utterance.text = step.title;
+        speechSynthesis.speak(utterance);
       }
       interval = setInterval(() => {
         remaining = remaining - 1;

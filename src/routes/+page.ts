@@ -12,7 +12,7 @@ export const load: PageLoad = async () => {
   const steps: Step[] = [
     {
       title: 'Prepararse para ducharse',
-      duration: 3,
+      duration: 30,
       image: '/pictogramas/ducha.png'
     },
     {
