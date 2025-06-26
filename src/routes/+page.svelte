@@ -14,6 +14,10 @@
   function prevStep() {
     currentStepIndex.update(n => Math.max(n - 1, 0));
   }
+
+  function restart() {
+    currentStepIndex.set(0);
+  }
 </script>
 
 <svelte:head>
@@ -34,8 +38,9 @@
   </div>
 
   <div class="navigation-buttons">
-    <button on:click={prevStep} disabled={$currentStepIndex === 0}>Previous</button>
-    <button on:click={nextStep} disabled={$currentStepIndex === data.steps.length - 1}>Next</button>
+    <button on:click={restart}>Reiniciar</button>
+    <button on:click={prevStep} disabled={$currentStepIndex === 0}>Anterior</button>
+    <button on:click={nextStep} disabled={$currentStepIndex === data.steps.length - 1}>Siguiente</button>
   </div>
 
   <div class="steps-carousel">
