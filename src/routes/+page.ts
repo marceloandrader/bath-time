@@ -1,4 +1,5 @@
 import type { PageLoad } from './$types';
+import { base } from '$app/paths';
 
 export const prerender = true;
 
@@ -13,57 +14,57 @@ export const load: PageLoad = async () => {
     {
       title: 'Prepararse para ducharse',
       duration: 30,
-      image: '/pictogramas/ducha.png'
+      image: `${base}/pictogramas/ducha.png`
     },
     {
       title: 'Mojarse cabello y cuerpo',
       duration: 3,
-      image: '/pictogramas/mojar.png'
+      image: `${base}/pictogramas/mojar.png`
     },
     {
       title: 'Poner Shampoo',
       duration: 3,
-      image: '/pictogramas/shampoo.png'
+      image: `${base}/pictogramas/shampoo.png`
     },
     {
       title: 'Lavar Pelo',
       duration: 3,
-      image: '/pictogramas/lavar.png'
+      image: `${base}/pictogramas/lavar.png`
     },
     {
       title: 'Poner Rinse',
       duration: 3,
-      image: '/pictogramas/acondicionador.png'
+      image: `${base}/pictogramas/acondicionador.png`
     },
     {
       title: 'Enjuagar Rinse',
       duration: 3,
-      image: '/pictogramas/lavar.png'
+      image: `${base}/pictogramas/lavar.png`
     },
     {
       title: 'Enjabonar Cuerpo',
       duration: 3,
-      image: '/pictogramas/enjabonar-cuerpo.png'
+      image: `${base}/pictogramas/enjabonar-cuerpo.png`
     },
     {
       title: 'Lavar Cuerpo',
       duration: 3,
-      image: '/pictogramas/lavar.png'
+      image: `${base}/pictogramas/lavar.png`
     },
     {
       title: 'Lavar Cara',
       duration: 3,
-      image: '/pictogramas/cara.png'
+      image: `${base}/pictogramas/cara.png`
     },
     {
       title: 'Enjuague Final',
       duration: 3,
-      image: '/pictogramas/final.png'
+      image: `${base}/pictogramas/final.png`
     },
     {
       title: 'Salir y Secar',
       duration: 3,
-      image: '/pictogramas/secarse.png'
+      image: `${base}/pictogramas/secarse.png`
     }
   ];
 
