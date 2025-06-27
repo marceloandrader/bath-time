@@ -31,7 +31,7 @@
       // Speak the step title
       if (utterance) {
         utterance.text = step.title;
-        speechSynthesis.speak(utterance);
+        // speechSynthesis.speak(utterance);
       }
       interval = setInterval(() => {
         remaining = remaining - 1;
