@@ -18,6 +18,19 @@
   function restart() {
     currentStepIndex.set(0);
   }
+
+  let carousel: HTMLElement;
+
+  function scrollToActive(index: number) {
+    if (carousel) {
+      const activeItem = carousel.children[index] as HTMLElement;
+      if (activeItem) {
+        activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }
+
+  $: scrollToActive($currentStepIndex);
 </script>
 
 <svelte:head>
@@ -43,7 +56,7 @@
     <button on:click={nextStep} disabled={$currentStepIndex === data.steps.length - 1}>Siguiente</button>
   </div>
 
-  <div class="steps-carousel">
+  <div class="steps-carousel" bind:this={carousel}>
     {#each data.steps as step, i}
       <div class="carousel-item" class:active={$currentStepIndex === i} class:done={$currentStepIndex > i}>
         <Step
@@ -110,7 +123,6 @@
     gap: 10px;
     padding-bottom: 10px; /* Space for scrollbar */
     width: 100%;
-    justify-content: center; /* Center items if they don't fill the width */
   }
 
   .carousel-item {
