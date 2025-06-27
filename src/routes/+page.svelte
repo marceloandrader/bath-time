@@ -50,6 +50,7 @@
           {step}
           isActive={$currentStepIndex === i}
           isDone={$currentStepIndex > i}
+          hideInfoWhenActive={true}
           on:stepComplete={nextStep}
         />
       </div>

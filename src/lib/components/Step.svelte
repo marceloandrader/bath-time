@@ -17,6 +17,7 @@
   export let step: { title: string; duration: number; image: string };
   export let isActive = false;
   export let isDone = false;
+  export let hideInfoWhenActive = false;
 
   let remaining = step.duration;
   let interval: NodeJS.Timeout;
@@ -58,14 +59,16 @@
 <div class="card" class:active={isActive} class:done={isDone}>
   {#if isActive}
     <div class="progress-bar-container">
-      <div class="progress-bar" style="width: {(remaining / step.duration) * 100}%" />
+      <div class="progress-bar" style="width: {(remaining / step.duration) * 100}%"></div>
     </div>
   {/if}
   <img src={step.image} alt={step.title} />
   <div class="card-content">
-    <h2 class:active={isActive}>{step.title}</h2>
-    {#if isActive}
-      <p class="timer">{remaining}s</p>
+    {#if !(isActive && hideInfoWhenActive)}
+      <h2 class:active={isActive}>{step.title}</h2>
+      {#if isActive}
+        <p class="timer">{remaining}s</p>
+      {/if}
     {/if}
   </div>
 </div>
