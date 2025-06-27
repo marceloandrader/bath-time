@@ -56,6 +56,11 @@
 </script>
 
 <div class="card" class:active={isActive} class:done={isDone}>
+  {#if isActive}
+    <div class="progress-bar-container">
+      <div class="progress-bar" style="width: {(remaining / step.duration) * 100}%" />
+    </div>
+  {/if}
   <img src={step.image} alt={step.title} />
   <div class="card-content">
     <h2 class:active={isActive}>{step.title}</h2>
@@ -75,6 +80,22 @@
     overflow: hidden;
     transition: all 0.3s ease;
     opacity: 0.5; /* Default for future steps */
+    position: relative;
+  }
+
+  .progress-bar-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 0.1s linear;
   }
 
   .card.active {
@@ -106,7 +127,7 @@
   }
 
   h2:not(.active) {
-    font-size: 10px;
+    font-size: 24px;
   }
 
   .timer {
